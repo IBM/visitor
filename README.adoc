@@ -128,7 +128,7 @@ Looking to validate your charts?
 Checkout the validation branch: https://github.com/ammbra/visitor/tree/validation/hybrid-chart-lab
 
 |===
-|https://github.com/ammbra/helm-openshift-workshop/tree/master[Navigate back to global instructions] | https://github.com/ammbra/landmark/tree/leader-chart-lab[Navigate back to previous section]
+|https://github.com/ammbra/helm-openshift-workshop/tree/master[Navigate to global instructions] | https://github.com/ammbra/landmark/tree/leader-chart-lab[Navigate to previous section]
 |===
 
 
