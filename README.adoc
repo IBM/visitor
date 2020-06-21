@@ -1,12 +1,12 @@
 = Hybrid chart approach with Helm Charts in Openshift
 
 * <<preparation , Preparation>>
-** <<create_the_docker_image_for_visitor_microservice, Create the Docker image for Visitor Microservice>>
-* <<install_leader_chart_for_landmark_microservice, Install leader chart for Landmark microservice >>
-** <<create_the_docker_image_for_landmark_microservice,Create the Docker image for Landmark Microservice>>
-** <<leader_helm_chart_installation, Leader Helm chart installation>>
-* <<install_helm_chart_for_visitor_microservice, Install Helm chart for Visitor microservice>>
-* <<solution_and_more_, Solution and more>>
+** <<create-the-docker-image-for-visitor-microservice, Create the Docker image for Visitor Microservice>>
+* <<install-leader-chart-for-landmark_microservice, Install leader chart for Landmark microservice >>
+** <<create-the-docker-image-for-landmark-microservice,Create the Docker image for Landmark Microservice>>
+** <<leader-helm-chart-installation, Leader Helm chart installation>>
+* <<install-helm-chart-for-visitor-microservice, Install Helm chart for Visitor microservice>>
+* <<solution-and-more, Solution and more>>
 * <<compatibility,Compatibility>>
 * <<license,License>>
 
