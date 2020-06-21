@@ -1,0 +1,143 @@
+= Hybrid chart approach with Helm Charts in Openshift
+
+* <<preparation , Preparation>>
+** <<create_the_docker_image_for_visitor_microservice, Create the Docker image for Visitor Microservice>>
+* <<install_leader_chart_for_landmark_microservice, Install leader chart for Landmark microservice >>
+** <<create_the_docker_image_for_landmark_microservice,Create the Docker image for Landmark Microservice>>
+** <<leader_helm_chart_installation, Leader Helm chart installation>>
+* <<install_helm_chart_for_visitor_microservice, Install Helm chart for Visitor microservice>>
+* <<solution_and_more_, Solution and more>>
+* <<compatibility,Compatibility>>
+* <<license,License>>
+
+This approach means to create one 'leader' chart per service group, while keeping
+one dependent chart per service, having values and specific aditions.
+
+**Goal of this section: deploy the visitor and landmark microservices using Helm charts.
+**
+
+Leader chart approach will be used for deploying landmark microservice, while visitor microservice will be deployed via chart per service approach.
+
+All the below commands will be executed in a terminal window.
+
+=== Preparation
+To login to the OpenShift cluster from the Terminal run:
+
+[source, bash, subs="normal,attributes"]
+----
+$ oc login -u kubeadmin -p YOUR_SECRET_PASSWORD https://api.crc.testing:6443
+----
+Check if you already have the _dev_ project:
+----
+$ oc get project
+$ oc new-project dev
+$ oc project dev
+----
+
+The landmark microservice will persist its data into a database, in this case a PostgreSQL database instance.
+
+Check if the Helm repo https://charts.bitnami.com/bitnami[https://charts.bitnami.com/bitnami] is added to your existing list:
+[source, bash, subs="normal,attributes"]
+----
+$ helm repo list
+----
+If the repo is not there, please run the following set of commands:
+[source, bash, subs="normal,attributes"]
+----
+$ helm repo add bitnami https://charts.bitnami.com/bitnami
+----
+
+==== Create the Docker image for Visitor Microservice
+Clone the repository https://github.com/ammbra/visitor[https://github.com/ammbra/visitor].
+Try to build the project locally using https://github.com/ammbra/visitor/blob/develop/Run-Visitor-Microservice.adoc[Run-Landmark-Microservice.adoc].
+
+Build the image with:
+[source, bash, subs="normal,attributes"]
+----
+$ docker run -d -p 5000:5000 --restart=always --name registry registry:2docker run -d -p 5000:5000 --restart=always --name registry registry:2
+$ docker build -t springboot/visitor:1.0 .
+$ docker tag springboot/visitor:1.0 localhost:5000/springboot/visitor:1.0
+$ docker push localhost:5000/springboot/visitor:1.0
+----
+
+=== Install leader chart for Landmark microservice
+If you have not deployed the landmark microservice using leader chart approach,
+please execute the following:
+
+[source, bash, subs="normal,attributes"]
+----
+$ git clone https://github.com/ammbra/landmark.git
+$ git checkout solution/leader-chart-lab
+$ git pull
+----
+
+**NOTE: Do the bellow steps only if you do not have the landmark Docker image created yet.
+**
+
+==== Create the Docker image for Landmark Microservice
+Clone the repository https://github.com/ammbra/landmark[https://github.com/ammbra/landmark].
+Try to build the project locally using https://github.com/ammbra/landmark/Run-Landmark-Microservice.adoc[Run-Landmark-Microservice.adoc].
+
+Make sure that you are under root folder of the clone repository (_landmark_) and run:
+[source, bash, subs="normal,attributes"]
+----
+$ mvn package
+----
+
+Then, build the image with:
+[source, bash, subs="normal,attributes"]
+----
+$ docker run -d -p 5000:5000 --restart=always --name registry registry:2docker run -d -p 5000:5000 --restart=always --name registry registry:2
+$ docker build -f Dockerfile -t spring-boot/visitor:1.0 .
+$ docker tag spring-boot/visitor:1.0 localhost:5000/spring-boot/visitor:1.0
+$ docker push localhost:5000/spring-boot/visitor:1.0
+----
+
+
+==== Leader Helm chart setup
+Install your charts in your current project:
+
+[source, bash, subs="normal,attributes"]
+----
+$ helm install leader ./leader
+$ helm status leader
+----
+
+=== Install Helm chart for Visitor microservice
+Return to the root folder of visitor microservice (_visitor_) and install its Helm charts:
+
+[source, bash, subs="normal,attributes"]
+----
+$ cd chart
+$ helm install visitor ./visitor
+$ helm status visitor
+$ kubectl get ns
+$ kubectl get svc
+$ kubectl port-forward --namespace qa svc/visitor 8080
+----
+
+Go in a browser window and copy-paste http://localhost:8080/api/visit/museum/ams
+
+*Congratulations*, you visited a landmark by using two microservices!
+
+=== Solution and more
+Blocked? 
+Checkout the branch: https://github.com/ammbra/visitor/tree/solution/hybrid-chart-lab
+
+Looking to validate your charts? 
+Checkout the validation branch: https://github.com/ammbra/visitor/tree/validation/hybrid-chart-lab
+
+|===
+|https://github.com/ammbra/helm-openshift-workshop/tree/master[Navigate back to global instructions] | https://github.com/ammbra/landmark/tree/leader-chart-lab[Navigate back to previous section]
+|===
+
+
+'''
+=== Compatibility
+
+The Java code in the repositories is compatible with Java11.
+
+'''
+=== License
+
+This code is dedicated to the public domain to the maximum extent permitted by applicable law, pursuant to http://creativecommons.org/publicdomain/zero/1.0/[CC0].

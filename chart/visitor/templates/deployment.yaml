@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "visitor.fullname" . }}
+  labels:
+    {{- include "visitor.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "visitor.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "visitor.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ include "visitor.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.image.containerPort }}
+              protocol: TCP
+          env:
+            - name: MUSEUM_SERVICE_ENDPOINT
+              value: {{ default "localhost" .Values.museumUrl | quote }}
+            - name: ALT_MUSEUM_SERVICE_ENDPOINT
+              value: {{ default "localhost" .Values.alternativeMuseumUrl | quote }}
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.readinessProbe.path}}
+              port: {{ .Values.service.ports.port }}
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds}}
+            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds}}
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds}}
+            failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.livenessProbe.path}}
+              port: {{ .Values.service.ports.port }}
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds}}
+            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds}}
+            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+            failureThreshold: {{ .Values.livenessProbe.failureThreshold}}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
