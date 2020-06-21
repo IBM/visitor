@@ -1,22 +1,21 @@
-= Hybrid chart approach solution in Openshift
+= Hybrid chart approach with validation in Openshift
 
-* <<preparation, Preparation>>
-** <<create-the-docker-image-for-visitor-microservice, Create the Docker image for Visitor Microservice>>
-* <<install-leader-chart-for-landmark-microservice, Install leader chart for Landmark microservice >>
-** <<create-the-docker-image-for-landmark-microservice,Create the Docker image for Landmark Microservice>>
-** <<leader-helm-chart-installation, Leader Helm chart installation>>
-* <<install-helm-chart-for-visitor-microservice, Install Helm chart for Visitor microservice>>
-* <<validation-and-more, Validation and more>>
+* <<preparation , Preparation>>
+** <<create_the_docker_image_for_visitor_microservice, Create the Docker image for Visitor Microservice>>
+* <<install_leader_chart_for_landmark_microservice, Install leader chart for Landmark microservice >>
+** <<create_the_docker_image_for_landmark_microservice,Create the Docker image for Landmark Microservice>>
+** <<leader_helm_chart_installation, Leader Helm chart installation>>
+* <<install_helm_chart_for_visitor_microservice, Install Helm chart for Visitor microservice>>
 * <<compatibility,Compatibility>>
 * <<license,License>>
 
 This approach means to create one 'leader' chart per service group, while keeping
 one dependent chart per service, having values and specific aditions.
 
-**Goal of this section: deploy the visitor and landmark microservices using Helm charts.
+**Goal of this section: deploy the visitor and landmark microservices using Helm charts that have additional JSON schema validation.
 **
 
-Leader chart approach will be used for deploying landmark microservice, while visitor microservice will be deployed via chart per service approach.
+Leader chart approach (with validation) will be used for deploying landmark microservice, while visitor microservice will be deployed via chart per service approach.
 
 All the below commands will be executed in a terminal window.
 
@@ -49,15 +48,14 @@ $ helm repo add bitnami https://charts.bitnami.com/bitnami
 
 ==== Create the Docker image for Visitor Microservice
 Clone the repository https://github.com/ammbra/visitor[https://github.com/ammbra/visitor]:
-
 [source, bash, subs="normal,attributes"]
 ----
 $ git clone https://github.com/ammbra/visitor.git
-$ git checkout -b solution/hybrid-chart-lab
+$ git checkout -b validation/hybrid-chart-lab
 $ git pull
 ----
 
-Try to build the project locally using https://github.com/ammbra/visitor/blob/solution/hybrid-chart-lab/Run-Visitor-Microservice.adoc[Run-Landmark-Microservice.adoc].
+Try to build the project locally using https://github.com/ammbra/visitor/blob/validation/hybrid-chart-lab/Run-Visitor-Microservice.adoc[Run-Landmark-Microservice.adoc].
 
 Build the image with:
 [source, bash, subs="normal,attributes"]
@@ -79,11 +77,9 @@ Clone the repository https://github.com/ammbra/landmark[https://github.com/ammbr
 [source, bash, subs="normal,attributes"]
 ----
 $ git clone https://github.com/ammbra/landmark.git
-$ git checkout -b solution/leader-chart-lab
+$ git checkout -b validation/leader-chart-lab
 $ git pull
 ----
-
-Try to build the project locally using https://github.com/ammbra/landmark/Run-Landmark-Microservice.adoc[Run-Landmark-Microservice.adoc].
 
 Make sure that you are under root folder of the clone repository (_landmark_) and run:
 [source, bash, subs="normal,attributes"]
@@ -101,7 +97,10 @@ $ docker push localhost:5000/quarkus/landmark:1.0
 
 
 ==== Leader Helm chart installation
-Return to the visitor project you were earlier on because you already have your leader charts solution there.
+Inspect the validation of the leader charts before installing them.
+
+You will notice a _values.<>.schema.json_ next to _values.yaml_ file; the JSON schema validation is an additional step that ensures correctness of your chart values.
+
 Install your charts in your current project:
 
 [source, bash, subs="normal,attributes"]
@@ -111,7 +110,9 @@ $ helm status leader
 ----
 
 === Install Helm chart for Visitor microservice
-Return to the root folder of visitor microservice (_visitor_) and install its Helm charts:
+Return to the root folder of visitor microservice (_visitor_).
+You will notice a _values.schema.json_ next to the _values.yaml_ file; the JSON schema validation is an additional step that ensures correctness of your chart values.
+
 
 [source, bash, subs="normal,attributes"]
 ----
@@ -126,13 +127,6 @@ $ kubectl port-forward --namespace qa svc/visitor 8080
 Go in a browser window and copy-paste http://localhost:8080/api/visit/museum/ams
 
 *Congratulations*, you visited a landmark by using two microservices!
-
-=== Validation and more
-
-Looking to validate your charts? 
-
-Checkout the validation branch: https://github.com/ammbra/visitor/tree/validation/hybrid-chart-lab
-
 
 |===
 |https://github.com/ammbra/helm-openshift-workshop[Navigate to global instructions] | https://github.com/ammbra/visitor[Navigate to previous section]
