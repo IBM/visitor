@@ -87,7 +87,7 @@ $ mvn package
 Then, build the image with:
 [source, bash, subs="normal,attributes"]
 ----
-$ docker run -d -p 5000:5000 --restart=always --name registry registry:2docker run -d -p 5000:5000 --restart=always --name registry registry:2
+$ docker run -d -p 5000:5000 --restart=always --name registry registry:2
 $ docker build -f Dockerfile -t spring-boot/visitor:1.0 .
 $ docker tag spring-boot/visitor:1.0 localhost:5000/spring-boot/visitor:1.0
 $ docker push localhost:5000/spring-boot/visitor:1.0
