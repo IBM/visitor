@@ -1,12 +1,12 @@
-= Hybrid chart approach with Helm Charts in Openshift
+= Hybrid chart approach solution in Openshift
 
-* <<preparation , Preparation>>
+* <<preparation, Preparation>>
 ** <<create-the-docker-image-for-visitor-microservice, Create the Docker image for Visitor Microservice>>
-* <<install-leader-chart-for-landmark_microservice, Install leader chart for Landmark microservice >>
+* <<install-leader-chart-for-landmark-microservice, Install leader chart for Landmark microservice >>
 ** <<create-the-docker-image-for-landmark-microservice,Create the Docker image for Landmark Microservice>>
 ** <<leader-helm-chart-installation, Leader Helm chart installation>>
 * <<install-helm-chart-for-visitor-microservice, Install Helm chart for Visitor microservice>>
-* <<solution-and-more, Solution and more>>
+* <<validation-and-more, Validation and more>>
 * <<compatibility,Compatibility>>
 * <<license,License>>
 
@@ -48,8 +48,16 @@ $ helm repo add bitnami https://charts.bitnami.com/bitnami
 ----
 
 ==== Create the Docker image for Visitor Microservice
-Clone the repository https://github.com/ammbra/visitor[https://github.com/ammbra/visitor].
-Try to build the project locally using https://github.com/ammbra/visitor/blob/develop/Run-Visitor-Microservice.adoc[Run-Landmark-Microservice.adoc].
+Clone the repository https://github.com/ammbra/visitor[https://github.com/ammbra/visitor]:
+
+[source, bash, subs="normal,attributes"]
+----
+$ git clone https://github.com/ammbra/visitor.git
+$ git checkout -b solution/hybrid-chart-lab
+$ git pull
+----
+
+Try to build the project locally using https://github.com/ammbra/visitor/blob/solution/hybrid-chart-lab/Run-Visitor-Microservice.adoc[Run-Landmark-Microservice.adoc].
 
 Build the image with:
 [source, bash, subs="normal,attributes"]
@@ -61,21 +69,20 @@ $ docker push localhost:5000/springboot/visitor:1.0
 ----
 
 === Install leader chart for Landmark microservice
-If you have not deployed the landmark microservice using leader chart approach,
-please execute the following:
+IMPORTANT: If you already have the Docker image for Landmark Microservice and/or the installation of the leader charts,
+skip these steps and just install the <<install-helm-chart-for-visitor-microservice, visitor charts >>.
 
+
+==== Create the Docker image for Landmark Microservice
+
+Clone the repository https://github.com/ammbra/landmark[https://github.com/ammbra/landmark].
 [source, bash, subs="normal,attributes"]
 ----
 $ git clone https://github.com/ammbra/landmark.git
-$ git checkout solution/leader-chart-lab
+$ git checkout -b solution/leader-chart-lab
 $ git pull
 ----
 
-**NOTE: Do the bellow steps only if you do not have the landmark Docker image created yet.
-**
-
-==== Create the Docker image for Landmark Microservice
-Clone the repository https://github.com/ammbra/landmark[https://github.com/ammbra/landmark].
 Try to build the project locally using https://github.com/ammbra/landmark/Run-Landmark-Microservice.adoc[Run-Landmark-Microservice.adoc].
 
 Make sure that you are under root folder of the clone repository (_landmark_) and run:
@@ -83,18 +90,18 @@ Make sure that you are under root folder of the clone repository (_landmark_) an
 ----
 $ mvn package
 ----
-
 Then, build the image with:
 [source, bash, subs="normal,attributes"]
 ----
 $ docker run -d -p 5000:5000 --restart=always --name registry registry:2docker run -d -p 5000:5000 --restart=always --name registry registry:2
-$ docker build -f Dockerfile -t spring-boot/visitor:1.0 .
-$ docker tag spring-boot/visitor:1.0 localhost:5000/spring-boot/visitor:1.0
-$ docker push localhost:5000/spring-boot/visitor:1.0
+$ docker build -f src/main/docker/Dockerfile.jvm -t quarkus/landmark:1.0 .
+$ docker tag quarkus/landmark:1.0 localhost:5000/quarkus/landmark:1.0
+$ docker push localhost:5000/quarkus/landmark:1.0
 ----
 
 
-==== Leader Helm chart setup
+==== Leader Helm chart installation
+Return to the visitor project you were earlier on because you already have your leader charts solution there.
 Install your charts in your current project:
 
 [source, bash, subs="normal,attributes"]
@@ -120,17 +127,16 @@ Go in a browser window and copy-paste http://localhost:8080/api/visit/museum/ams
 
 *Congratulations*, you visited a landmark by using two microservices!
 
-=== Solution and more
-Blocked? 
-Checkout the branch: https://github.com/ammbra/visitor/tree/solution/hybrid-chart-lab
+=== Validation and more
 
 Looking to validate your charts? 
+
 Checkout the validation branch: https://github.com/ammbra/visitor/tree/validation/hybrid-chart-lab
 
-|===
-|https://github.com/ammbra/helm-openshift-workshop/tree/master[Navigate to global instructions] | https://github.com/ammbra/landmark/tree/leader-chart-lab[Navigate to previous section]
-|===
 
+|===
+|https://github.com/ammbra/helm-openshift-workshop[Navigate to global instructions] | https://github.com/ammbra/visitor[Navigate to previous section]
+|===
 
 '''
 === Compatibility
