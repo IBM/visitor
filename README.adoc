@@ -1,9 +1,9 @@
 = Hybrid chart approach with validation in Openshift
 
 * <<preparation , Preparation>>
-** <<working-locally-with-the-docker-image-for-visitor-microservice, Create the Docker image for Visitor Microservice>>
+** <<working-locally-with-the-docker-image-for-visitor-microservice, Working locally with the Docker image for Visitor Microservice>>
 * <<install-leader-chart-for-landmark-microservice, Install leader chart for Landmark microservice >>
-** <<working-locally-with-the-docker-image-for-landmark-microservice,Create the Docker image for Landmark Microservice>>
+** <<working-locally-with-the-docker-image-for-landmark-microservice, Working locally with the Docker image for Landmark Microservice>>
 ** <<leader-helm-chart-installation, Leader Helm chart installation>>
 * <<install-helm-chart-for-visitor-microservice, Install Helm chart for Visitor microservice>>
 * <<compatibility,Compatibility>>
