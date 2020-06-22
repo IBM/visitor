@@ -51,7 +51,7 @@ $ helm repo add bitnami https://charts.bitnami.com/bitnami
 Clone the repository https://github.com/ammbra/visitor[https://github.com/ammbra/visitor].
 Try to build the project locally using https://github.com/ammbra/visitor/blob/develop/Run-Visitor-Microservice.adoc[Run-Landmark-Microservice.adoc].
 
-Build the image with:
+If you wish to build the image locally, please use:
 [source, bash, subs="normal,attributes"]
 ----
 $ docker run -d -p 5000:5000 --restart=always --name registry registry:2
