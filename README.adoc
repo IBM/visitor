@@ -1,6 +1,6 @@
 = Hybrid chart approach with Helm Charts in Openshift
 
-:home: https://github.com/ammbra
+:home: https://github.com/IBM
 
 * <<preparation , Preparation>>
 ** <<working-locally-with-the-docker-image-for-visitor-microservice, Working locally with the Docker image for Visitor Microservice>>
