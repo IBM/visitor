@@ -1,4 +1,7 @@
 = Visitor project
+
+:home: https://github.com/IBM
+
 This project uses Spring Boot.
 
 If you want to learn more about Spring boot, see * <<HELP.adoc#, help>>
@@ -11,5 +14,5 @@ mvn spring-boot:run
 
 
 |===
-|https://github.com/ammbra/helm-openshift-workshop/tree/master[Navigate back to global instructions] | https://github.com/ammbra/landmark/tree/leader-chart-lab[Navigate back to previous section] | https://github.com/ammbra/visitor/tree/feature/hybrid-chart-lab[Navigate back to next section]
+|{home}/helm-openshift-workshop[Navigate to global instructions] | {home}/visitor/tree/validation/hybrid-chart-lab[Navigate to previous section] 
 |===
