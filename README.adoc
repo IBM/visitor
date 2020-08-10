@@ -1,6 +1,6 @@
 = Hybrid chart approach with validation in Openshift
 
-:home: https://github.com/ammbra
+:home: https://github.com/IBM
 
 * <<preparation , Preparation>>
 ** <<working-locally-with-the-docker-image-for-visitor-microservice, Working locally with the Docker image for Visitor Microservice>>
@@ -57,7 +57,7 @@ $ git checkout -b validation/hybrid-chart-lab
 $ git pull
 ----
 
-Try to build the project locally using {home}/visitor/blob/validation/hybrid-chart-lab/Run-Visitor-Microservice.adoc[Run-Landmark-Microservice.adoc].
+Try to build the project locally using {home}/visitor/blob/validation/hybrid-chart-lab/Run-Visitor-Microservice.adoc[Run-Visitor-Microservice.adoc].
 
 Build the image with:
 [source, bash, subs="normal,attributes"]
