@@ -59,7 +59,7 @@ $ git checkout -b solution/hybrid-chart-lab
 $ git pull
 ----
 
-Try to build the project locally using https://github.com/ammbra/visitor/blob/solution/hybrid-chart-lab/Run-Visitor-Microservice.adoc[Run-Landmark-Microservice.adoc].
+Try to build the project locally using {home}/visitor/blob/solution/hybrid-chart-lab/Run-Visitor-Microservice.adoc[Run-Landmark-Microservice.adoc].
 
 Build the image with:
 [source, bash, subs="normal,attributes"]
@@ -80,7 +80,7 @@ skip these steps and just install the <<install-helm-chart-for-visitor-microserv
 Clone the repository {home}/landmark.
 [source, bash, subs="normal,attributes"]
 ----
-$ git clone https://github.com/ammbra/landmark.git
+$ git clone {home}/landmark.git
 $ git checkout -b solution/leader-chart-lab
 $ git pull
 ----
