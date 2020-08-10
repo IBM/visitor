@@ -1,6 +1,6 @@
 = Hybrid chart approach solution in Openshift
 
-:home: https://github.com/ammbra
+:home: https://github.com/IBM
 
 * <<preparation, Preparation>>
 ** <<working-locally-with-the-docker-image-for-visitor-microservice, Working locally with the Docker image for Visitor Microservice>>
@@ -59,7 +59,7 @@ $ git checkout -b solution/hybrid-chart-lab
 $ git pull
 ----
 
-Try to build the project locally using {home}/visitor/blob/solution/hybrid-chart-lab/Run-Visitor-Microservice.adoc[Run-Landmark-Microservice.adoc].
+Try to build the project locally using {home}/visitor/blob/solution/hybrid-chart-lab/Run-Visitor-Microservice.adoc[Run-Visitor-Microservice.adoc].
 
 Build the image with:
 [source, bash, subs="normal,attributes"]
@@ -85,7 +85,7 @@ $ git checkout -b solution/leader-chart-lab
 $ git pull
 ----
 
-Try to build the project locally using {home}/landmark/Run-Landmark-Microservice.adoc[Run-Landmark-Microservice.adoc].
+Try to build the project locally using {home}/landmark/blob/develop/Run-Landmark-Microservice.adoc[Run-Landmark-Microservice.adoc].
 
 Make sure that you are under root folder of the clone repository (_landmark_) and run:
 [source, bash, subs="normal,attributes"]
