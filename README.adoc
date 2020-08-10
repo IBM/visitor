@@ -1,5 +1,7 @@
 = Hybrid chart approach with validation in Openshift
 
+:home: https://github.com/ammbra
+
 * <<preparation , Preparation>>
 ** <<working-locally-with-the-docker-image-for-visitor-microservice, Working locally with the Docker image for Visitor Microservice>>
 * <<install-leader-chart-for-landmark-microservice, Install leader chart for Landmark microservice >>
@@ -50,12 +52,12 @@ $ helm repo add bitnami https://charts.bitnami.com/bitnami
 Clone the repository https://github.com/ammbra/visitor[https://github.com/ammbra/visitor]:
 [source, bash, subs="normal,attributes"]
 ----
-$ git clone https://github.com/ammbra/visitor.git
+$ git clone {home}/visitor.git
 $ git checkout -b validation/hybrid-chart-lab
 $ git pull
 ----
 
-Try to build the project locally using https://github.com/ammbra/visitor/blob/validation/hybrid-chart-lab/Run-Visitor-Microservice.adoc[Run-Landmark-Microservice.adoc].
+Try to build the project locally using {home}/visitor/blob/validation/hybrid-chart-lab/Run-Visitor-Microservice.adoc[Run-Landmark-Microservice.adoc].
 
 Build the image with:
 [source, bash, subs="normal,attributes"]
@@ -73,7 +75,7 @@ skip these steps and just install the <<install-helm-chart-for-visitor-microserv
 
 ==== Working locally with the Docker image for Landmark Microservice
 
-Clone the repository https://github.com/ammbra/landmark[https://github.com/ammbra/landmark].
+Clone the repository {home}/landmark.
 [source, bash, subs="normal,attributes"]
 ----
 $ git clone https://github.com/ammbra/landmark.git
@@ -129,7 +131,7 @@ Go in a browser window and copy-paste http://localhost:8080/api/visit/museum/ams
 *Congratulations*, you visited a landmark by using two microservices!
 
 |===
-|https://github.com/ammbra/helm-openshift-workshop[Navigate to global instructions] | https://github.com/ammbra/visitor[Navigate to previous section]
+|{home}/helm-openshift-workshop[Navigate to global instructions] | {home}/visitor[Navigate to previous section]
 |===
 
 '''
