@@ -1,5 +1,7 @@
 = Hybrid chart approach with Helm Charts in Openshift
 
+:home: https://github.com/ammbra
+
 * <<preparation , Preparation>>
 ** <<working-locally-with-the-docker-image-for-visitor-microservice, Working locally with the Docker image for Visitor Microservice>>
 * <<install-leader-chart-for-landmark_microservice, Install leader chart for Landmark microservice >>
@@ -48,8 +50,8 @@ $ helm repo add bitnami https://charts.bitnami.com/bitnami
 ----
 
 ==== Working locally with the Docker image for Visitor Microservice
-Clone the repository https://github.com/ammbra/visitor[https://github.com/ammbra/visitor].
-Try to build the project locally using https://github.com/ammbra/visitor/blob/develop/Run-Visitor-Microservice.adoc[Run-Landmark-Microservice.adoc].
+Clone the repository {home}/visitor.
+Try to build the project locally using {home}/visitor/blob/develop/Run-Visitor-Microservice.adoc[Run-Landmark-Microservice.adoc].
 
 If you wish to build the image locally, please use:
 [source, bash, subs="normal,attributes"]
@@ -66,7 +68,7 @@ please execute the following:
 
 [source, bash, subs="normal,attributes"]
 ----
-$ git clone https://github.com/ammbra/landmark.git
+$ git clone {home}/landmark.git
 $ git checkout solution/leader-chart-lab
 $ git pull
 ----
@@ -75,8 +77,8 @@ $ git pull
 **
 
 ==== Working locally with the Docker image for Landmark Microservice
-Clone the repository https://github.com/ammbra/landmark[https://github.com/ammbra/landmark].
-Try to build the project locally using https://github.com/ammbra/landmark/Run-Landmark-Microservice.adoc[Run-Landmark-Microservice.adoc].
+Clone the repository {home}/landmark.
+Try to build the project locally using {home}/landmark/Run-Landmark-Microservice.adoc[Run-Landmark-Microservice.adoc].
 
 Make sure that you are under root folder of the clone repository (_landmark_) and run:
 [source, bash, subs="normal,attributes"]
@@ -122,13 +124,13 @@ Go in a browser window and copy-paste http://localhost:8080/api/visit/museum/ams
 
 === Solution and more
 Blocked? 
-Checkout the branch: https://github.com/ammbra/visitor/tree/solution/hybrid-chart-lab
+Checkout the branch: {home}/visitor/tree/solution/hybrid-chart-lab
 
 Looking to validate your charts? 
-Checkout the validation branch: https://github.com/ammbra/visitor/tree/validation/hybrid-chart-lab
+Checkout the validation branch: {home}/visitor/tree/validation/hybrid-chart-lab
 
 |===
-|https://github.com/ammbra/helm-openshift-workshop[Navigate to global instructions] | https://github.com/ammbra/landmark/tree/feature/leader-chart-lab[Navigate to previous section]
+|{home}/helm-openshift-workshop[Navigate to global instructions] |{home}/landmark/tree/feature/leader-chart-lab[Navigate to previous section]
 |===
 
 
