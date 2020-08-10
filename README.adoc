@@ -51,7 +51,7 @@ $ helm repo add bitnami https://charts.bitnami.com/bitnami
 
 ==== Working locally with the Docker image for Visitor Microservice
 Clone the repository {home}/visitor.
-Try to build the project locally using {home}/visitor/blob/develop/Run-Visitor-Microservice.adoc[Run-Landmark-Microservice.adoc].
+Try to build the project locally using {home}/visitor/blob/develop/Run-Visitor-Microservice.adoc[Run-Visitor-Microservice.adoc].
 
 If you wish to build the image locally, please use:
 [source, bash, subs="normal,attributes"]
@@ -78,7 +78,7 @@ $ git pull
 
 ==== Working locally with the Docker image for Landmark Microservice
 Clone the repository {home}/landmark.
-Try to build the project locally using {home}/landmark/Run-Landmark-Microservice.adoc[Run-Landmark-Microservice.adoc].
+Try to build the project locally using {home}/landmark/blob/develop/Run-Landmark-Microservice.adoc[Run-Landmark-Microservice.adoc].
 
 Make sure that you are under root folder of the clone repository (_landmark_) and run:
 [source, bash, subs="normal,attributes"]
