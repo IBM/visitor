@@ -1,5 +1,7 @@
 = Hybrid chart approach solution in Openshift
 
+:home: https://github.com/ammbra
+
 * <<preparation, Preparation>>
 ** <<working-locally-with-the-docker-image-for-visitor-microservice, Working locally with the Docker image for Visitor Microservice>>
 * <<install-leader-chart-for-landmark-microservice, Install leader chart for Landmark microservice >>
@@ -48,11 +50,11 @@ $ helm repo add bitnami https://charts.bitnami.com/bitnami
 ----
 
 ==== Working locally with the Docker image for Visitor Microservice
-Clone the repository https://github.com/ammbra/visitor[https://github.com/ammbra/visitor]:
+Clone the repository {home}/visitor:
 
 [source, bash, subs="normal,attributes"]
 ----
-$ git clone https://github.com/ammbra/visitor.git
+$ git clone {home}/visitor.git
 $ git checkout -b solution/hybrid-chart-lab
 $ git pull
 ----
@@ -75,7 +77,7 @@ skip these steps and just install the <<install-helm-chart-for-visitor-microserv
 
 ==== Working locally with the Docker image for Landmark Microservice
 
-Clone the repository https://github.com/ammbra/landmark[https://github.com/ammbra/landmark].
+Clone the repository {home}/landmark.
 [source, bash, subs="normal,attributes"]
 ----
 $ git clone https://github.com/ammbra/landmark.git
@@ -83,7 +85,7 @@ $ git checkout -b solution/leader-chart-lab
 $ git pull
 ----
 
-Try to build the project locally using https://github.com/ammbra/landmark/Run-Landmark-Microservice.adoc[Run-Landmark-Microservice.adoc].
+Try to build the project locally using {home}/landmark/Run-Landmark-Microservice.adoc[Run-Landmark-Microservice.adoc].
 
 Make sure that you are under root folder of the clone repository (_landmark_) and run:
 [source, bash, subs="normal,attributes"]
@@ -131,11 +133,11 @@ Go in a browser window and copy-paste http://localhost:8080/api/visit/museum/ams
 
 Looking to validate your charts? 
 
-Checkout the validation branch: https://github.com/ammbra/visitor/tree/validation/hybrid-chart-lab
+Checkout the validation branch: {home}/visitor/tree/validation/hybrid-chart-lab
 
 
 |===
-|https://github.com/ammbra/helm-openshift-workshop[Navigate to global instructions] | https://github.com/ammbra/visitor[Navigate to previous section]
+|{home}/helm-openshift-workshop[Navigate to global instructions] | {home}/visitor[Navigate to previous section]
 |===
 
 '''
