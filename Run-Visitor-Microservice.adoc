@@ -14,5 +14,5 @@ mvn spring-boot:run
 
 
 |===
-|{home}/helm-openshift-workshop[Navigate back to global instructions] | {home}/visitor[Navigate to previous section]
+|{home}/helm-openshift-workshop[Navigate to global instructions] | {home}/visitor[Navigate to previous section]
 |===
